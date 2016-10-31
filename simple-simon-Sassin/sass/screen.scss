@@ -1,0 +1,43 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+$red: #EF271B;
+$green: #80DB48;
+$blue: #67C2DB;
+$yellow: #FCFF4B;
+
+
+@mixin corner-triangle($corner, $size, $color) {
+  width: 0;
+  height: 0;
+
+  @if $corner == 'top-left' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+  } @else if $corner == 'top-right' {
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+  } @else if $corner == 'bottom-left' {
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  } @else if $corner == 'bottom-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
+
+.top-left-triangle {
+  @include corner-triangle(top-left, 10rem, $blue);
+}
+.top-right-triangle{
+  @include  corner-triangle(top-right, 10rem, $red);
+}
+.bottom-left-triangle{
+  @include  corner-triangle(bottom-left, 10rem, $yellow);
+}
+.bottom-right-triangle{
+  @include  corner-triangle(bottom-right, 10rem, $green);
+}

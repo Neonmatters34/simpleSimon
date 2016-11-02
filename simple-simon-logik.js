@@ -1,6 +1,4 @@
-/**
- * Created by Matt on 11/1/16.
- */
+/*** Created by ya boi*/
 $('document').ready(function () {});
 var $topLeft = $('#triangle-top-left');
 var $topRight = $('#triangle-top-right');
@@ -11,7 +9,7 @@ var $round = $('#round');
 var round = 1;
 var whichTriangle = [$topLeft, $topRight, $bottomLeft, $bottomRight];
 var playerSequence= [];
-var gameSequence = [1, 3, 2, 4];
+var gameSequence = [];
 var randomColor;
 var keys = {
     q:81,
@@ -25,8 +23,12 @@ function nextLevel() {
     $round.text('round ' + round );
     randomNumber();
     displaySequence();
-    lightUpButtonOnKeypress();
+    $.when(nextLevel).done(function () {
+        lightUpButtonOnKeypress();
+    });
 }
+
+
 
 function displaySequence() {
     $.each(gameSequence, function(index, element){
@@ -59,9 +61,9 @@ function animateOpacity(toBeAnimated) {
             opacity: "1"
         },
         {
-            duration: '100',
+            duration: '50',
             complete: function () {
-                triangleToAnimate.animate({opacity: '.5'}, 300)
+                triangleToAnimate.animate({opacity: '.5'}, 50)
             }
         });
 

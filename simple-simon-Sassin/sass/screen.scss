@@ -8,11 +8,14 @@ $red: #EF271B;
 $green: #80DB48;
 $blue: #67C2DB;
 $yellow: #FCFF4B;
-
+$grey: #474645;
 
 @mixin corner-triangle($corner, $size, $color) {
   width: 0;
   height: 0;
+  position: absolute;
+  opacity: .7;
+
 
   @if $corner == 'top-left' {
     border-top: $size solid $color;
@@ -29,15 +32,63 @@ $yellow: #FCFF4B;
   }
 }
 
-.top-left-triangle {
-  @include corner-triangle(top-left, 10rem, $blue);
-}
-.top-right-triangle{
-  @include  corner-triangle(top-right, 10rem, $red);
-}
-.bottom-left-triangle{
-  @include  corner-triangle(bottom-left, 10rem, $yellow);
-}
-.bottom-right-triangle{
-  @include  corner-triangle(bottom-right, 10rem, $green);
+body {
+  background: $grey;
+
+  h1 {
+    font-size: 9rem;
+    color: whitesmoke;
+  }
+
+  #center-square {
+    width: 14.14rem;
+    height: 14.14rem;
+    background: black;
+    z-index: 10;
+    -webkit-transform: rotate(-45deg);
+    position: absolute;
+    top:28%;
+    left:40.7%;
+    cursor: pointer;
+
+      #start{
+        font-size: 2rem;
+        -webkit-transform:rotate(45deg);
+        position: absolute;
+        left:35%;
+        top:40%;
+        color: whitesmoke;
+      }
+      #round{
+        font-size: 1.4rem;
+        -webkit-transform:rotate(45deg);
+        position: absolute;
+        left:5%;
+        top:64%;
+        color: whitesmoke;
+
+      }
+  }
+
+  .top-left-triangle {
+    @include corner-triangle(top-left, 10rem, $blue);
+    left:37%;
+  }
+
+  .top-right-triangle {
+    @include corner-triangle(top-right, 10rem, $red);
+    left:49.5%;
+  }
+
+  .bottom-left-triangle {
+    @include corner-triangle(bottom-left, 10rem, $yellow);
+    top:44%;
+    left:37%;
+  }
+
+  .bottom-right-triangle {
+    @include corner-triangle(bottom-right, 10rem, $green);
+    left:49.5%;
+    top:44%;
+  }
 }

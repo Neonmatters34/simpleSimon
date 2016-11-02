@@ -67,34 +67,84 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 32, ../sass/screen.scss */
-.top-left-triangle {
+/* line 35, ../sass/screen.scss */
+body {
+  background: #474645;
+}
+/* line 38, ../sass/screen.scss */
+body h1 {
+  font-size: 9rem;
+  color: whitesmoke;
+}
+/* line 43, ../sass/screen.scss */
+body #center-square {
+  width: 14.14rem;
+  height: 14.14rem;
+  background: black;
+  z-index: 10;
+  -webkit-transform: rotate(-45deg);
+  position: absolute;
+  top: 28%;
+  left: 40.7%;
+  cursor: pointer;
+}
+/* line 54, ../sass/screen.scss */
+body #center-square #start {
+  font-size: 2rem;
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  left: 35%;
+  top: 40%;
+  color: whitesmoke;
+}
+/* line 62, ../sass/screen.scss */
+body #center-square #round {
+  font-size: 1.4rem;
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  left: 5%;
+  top: 64%;
+  color: whitesmoke;
+}
+/* line 73, ../sass/screen.scss */
+body .top-left-triangle {
   width: 0;
   height: 0;
+  position: absolute;
+  opacity: .7;
   border-top: 10rem solid #67C2DB;
   border-right: 10rem solid transparent;
+  left: 37%;
 }
-
-/* line 35, ../sass/screen.scss */
-.top-right-triangle {
+/* line 78, ../sass/screen.scss */
+body .top-right-triangle {
   width: 0;
   height: 0;
+  position: absolute;
+  opacity: .7;
   border-top: 10rem solid #EF271B;
   border-left: 10rem solid transparent;
+  left: 49.5%;
 }
-
-/* line 38, ../sass/screen.scss */
-.bottom-left-triangle {
+/* line 83, ../sass/screen.scss */
+body .bottom-left-triangle {
   width: 0;
   height: 0;
+  position: absolute;
+  opacity: .7;
   border-right: 10rem solid transparent;
   border-bottom: 10rem solid #FCFF4B;
+  top: 44%;
+  left: 37%;
 }
-
-/* line 41, ../sass/screen.scss */
-.bottom-right-triangle {
+/* line 89, ../sass/screen.scss */
+body .bottom-right-triangle {
   width: 0;
   height: 0;
+  position: absolute;
+  opacity: .7;
   border-bottom: 10rem solid #80DB48;
   border-left: 10rem solid transparent;
+  left: 49.5%;
+  top: 44%;
 }

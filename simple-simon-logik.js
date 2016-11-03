@@ -7,10 +7,8 @@ var $bottomRight = $('#triangle-bottom-right');
 var $start = $('#center-square');
 var $round = $('#round');
 var round = 1;
-var whichTriangle = [$topLeft, $topRight, $bottomLeft, $bottomRight];
 var playerSequence= [];
 var gameSequence = [];
-var randomColor;
 var keys = {
     q:81,
     w:87,
@@ -18,28 +16,9 @@ var keys = {
     s:83
 };
 
-
-function nextLevel() {
-    $round.text('round ' + round );
-    randomNumber();
-    displaySequence();
-    $.when(nextLevel).done(function () {
-        lightUpButtonOnKeypress();
-    });
-}
-
-
-
-function displaySequence() {
-    $.each(gameSequence, function(index, element){
-    animateOpacity(element);
-
-    });
-}
-
 function randomNumber() {
-        gameSequence.push(Math.floor((Math.random() * 4) + 1));
-        console.log(gameSequence)
+    gameSequence.push(Math.floor((Math.random() * 4) + 1));
+    console.log(gameSequence)
 }
 
 function animateOpacity(toBeAnimated) {
@@ -49,24 +28,32 @@ function animateOpacity(toBeAnimated) {
             triangleToAnimate = $topLeft;
         }else if (toBeAnimated == 2){
             triangleToAnimate = $topRight;
-        }else if (toBeAnimated == 3){
-            triangleToAnimate = $bottomLeft;
         }else if (toBeAnimated == 4){
+            triangleToAnimate = $bottomLeft;
+        }else if (toBeAnimated == 3){
             triangleToAnimate = $bottomRight
         }
     }else {
         triangleToAnimate = toBeAnimated;
     }
-    triangleToAnimate.animate({
+    triangleToAnimate.stop().animate({
             opacity: "1"
         },
         {
             duration: '50',
             complete: function () {
-                triangleToAnimate.animate({opacity: '.5'}, 50)
+                triangleToAnimate.stop().animate({opacity: '.5'}, 300)
             }
         });
 
+}
+
+function displaySequence() {
+    $.each(gameSequence, function(index, element){
+        setTimeout(function() {
+            animateOpacity(element);
+        }, index * 350);
+    });
 }
 
 function lightUpButtonOnKeypress() {
@@ -93,17 +80,38 @@ function lightUpButtonOnKeypress() {
     })
 }
 
+function compareSequences() {
+    var is_same = (playerSequence.length == gameSequence.length) && playerSequence.every(function(element, index) {
+            return element === gameSequence[index];
+        });
+    if (is_same) {
+        ++round;
+        nextLevel();
+    }else if(!is_same){
+        alert('you suck')
+    }
+}
+
+function nextLevel() {
+
+    $round.text('round ' + round);
+    randomNumber();
+    displaySequence();
+    lightUpButtonOnKeypress();
+    this.compareSequences();
+}
+
+
 
 
 function startGame() {
-
     nextLevel();
 
-    }
 
+
+}
 
 $start.click(function (){
     startGame();
     $('#start').hide();
 });
-

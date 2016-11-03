@@ -63,21 +63,31 @@ function lightUpButtonOnKeypress() {
         if (e.keyCode === keys.a) {
             animateOpacity($bottomLeft);
             playerSequence.push(4);
+
+
             console.log(playerSequence);
         } else if (e.keyCode === keys.q) {
             animateOpacity($topLeft);
             playerSequence.push(1);
+
+
             console.log(playerSequence);
         } else if (e.keyCode === keys.w) {
             animateOpacity($topRight);
             playerSequence.push(2);
+
+
             console.log(playerSequence);
         } else if (e.keyCode === keys.s) {
             animateOpacity($bottomRight);
             playerSequence.push(3);
+
+
             console.log(playerSequence);
         }
-    })
+        compareSequences();
+
+    });
 }
 
 function compareSequences() {
@@ -86,6 +96,7 @@ function compareSequences() {
         });
     if (is_same) {
         ++round;
+        playerSequence = [];
         nextLevel();
     }else if(!is_same){
         alert('you suck')
@@ -98,7 +109,6 @@ function nextLevel() {
     randomNumber();
     displaySequence();
     lightUpButtonOnKeypress();
-    this.compareSequences();
 }
 
 

@@ -1,5 +1,4 @@
 /*** Created by ya boi*/
-$('document').ready(function () {});
 var $topLeft = $('#triangle-top-left');
 var $topRight = $('#triangle-top-right');
 var $bottomLeft = $('#triangle-bottom-left');
@@ -7,7 +6,10 @@ var $bottomRight = $('#triangle-bottom-right');
 var $start = $('#center-square');
 var $round = $('#round');
 var round = 1;
+var haveWeAlreadyStartedListeningForButtonPresses = false;
+var positionToCheck = 0;
 var playerSequence= [];
+var startOnOff = false;
 var gameSequence = [];
 var keys = {
     q:81,
@@ -15,7 +17,7 @@ var keys = {
     a:65,
     s:83
 };
-
+//number gets pushed to gameSequence
 function randomNumber() {
     gameSequence.push(Math.floor((Math.random() * 4) + 1));
     console.log(gameSequence)
@@ -23,7 +25,8 @@ function randomNumber() {
 
 function animateOpacity(toBeAnimated) {
     var triangleToAnimate;
-    if (typeof toBeAnimated == 'number'){
+
+    if (typeof toBeAnimated == 'number') {//if the input is a number then it animates based on gameSequence
         if (toBeAnimated == 1){
             triangleToAnimate = $topLeft;
         }else if (toBeAnimated == 2){
@@ -33,16 +36,16 @@ function animateOpacity(toBeAnimated) {
         }else if (toBeAnimated == 3){
             triangleToAnimate = $bottomRight
         }
-    }else {
+    } else {                                     //otherwise it animates based on the element input. see:lightUpButtonOnKeypress
         triangleToAnimate = toBeAnimated;
     }
     triangleToAnimate.stop().animate({
-            opacity: "1"
+            opacity: "1",
+            duration: "100000"
         },
         {
-            duration: '50',
             complete: function () {
-                triangleToAnimate.stop().animate({opacity: '.5'}, 300)
+                triangleToAnimate.animate({opacity: '.3'}, 40)
             }
         });
 
@@ -52,76 +55,93 @@ function displaySequence() {
     $.each(gameSequence, function(index, element){
         setTimeout(function() {
             animateOpacity(element);
-        }, index * 350);
+        }, index * 600);
     });
 }
 
 function lightUpButtonOnKeypress() {
-    $(document).keyup(function (e) {
+    if (haveWeAlreadyStartedListeningForButtonPresses == false) {
+        $(document).keyup(function (e) {
 
 
-        if (e.keyCode === keys.a) {
-            animateOpacity($bottomLeft);
-            playerSequence.push(4);
+            if (e.keyCode === keys.a) {
+                animateOpacity($bottomLeft);
+                playerSequence.push(4);
+                compareSequences();
+
+            } else if (e.keyCode === keys.q) {
+                animateOpacity($topLeft);
+                playerSequence.push(1);
+                compareSequences();
+
+            } else if (e.keyCode === keys.w) {
+                animateOpacity($topRight);
+                playerSequence.push(2);
+                compareSequences();
+
+            } else if (e.keyCode === keys.s) {
+                animateOpacity($bottomRight);
+                playerSequence.push(3);
+                compareSequences(); //once a key is pressed checks arrays against eachother
 
 
-            console.log(playerSequence);
-        } else if (e.keyCode === keys.q) {
-            animateOpacity($topLeft);
-            playerSequence.push(1);
+            }
 
+        });
+        haveWeAlreadyStartedListeningForButtonPresses = true;
+    }
+}
 
-            console.log(playerSequence);
-        } else if (e.keyCode === keys.w) {
-            animateOpacity($topRight);
-            playerSequence.push(2);
+function clearSequences() {
+    gameSequence = [];
+    playerSequence = [];
+    positionToCheck = 0;
+    round = 0;
+}
 
+function playAgain() {
+    $('#start').show().text('You Lose.' + 'Play again?');
+    clearSequences()
 
-            console.log(playerSequence);
-        } else if (e.keyCode === keys.s) {
-            animateOpacity($bottomRight);
-            playerSequence.push(3);
-
-
-            console.log(playerSequence);
-        }
-        compareSequences();
-
-    });
 }
 
 function compareSequences() {
-    var is_same = (playerSequence.length == gameSequence.length) && playerSequence.every(function(element, index) {
-            return element === gameSequence[index];
-        });
-    if (is_same) {
-        ++round;
-        playerSequence = [];
-        nextLevel();
-    }else if(!is_same){
-        alert('you suck')
+
+    if (playerSequence[positionToCheck] == gameSequence[positionToCheck]) {
+        //correct press
+        console.log("Correct");
+        positionToCheck++;
+    } else {
+        //incorrect press
+        playAgain();
+        startOnOff = false;
+        console.log("incorrect");
+    }
+    if (positionToCheck == gameSequence.length) {
+        console.log("finished");
+        round++;
+        window.setTimeout(nextLevel, 900);
     }
 }
+
 
 function nextLevel() {
 
     $round.text('round ' + round);
+    playerSequence = [];
+    positionToCheck = 0;
     randomNumber();
     displaySequence();
     lightUpButtonOnKeypress();
 }
 
-
-
-
 function startGame() {
     nextLevel();
-
-
-
 }
 
 $start.click(function (){
+    if (startOnOff == false)
     startGame();
     $('#start').hide();
+    startOnOff = true;
 });

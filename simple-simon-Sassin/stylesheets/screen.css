@@ -111,7 +111,7 @@ body .top-left-triangle {
   width: 0;
   height: 0;
   position: absolute;
-  opacity: .7;
+  opacity: .3;
   border-top: 10rem solid #67C2DB;
   border-right: 10rem solid transparent;
   left: 37%;
@@ -121,7 +121,7 @@ body .top-right-triangle {
   width: 0;
   height: 0;
   position: absolute;
-  opacity: .7;
+  opacity: .3;
   border-top: 10rem solid #EF271B;
   border-left: 10rem solid transparent;
   left: 49.5%;
@@ -131,7 +131,7 @@ body .bottom-left-triangle {
   width: 0;
   height: 0;
   position: absolute;
-  opacity: .7;
+  opacity: .3;
   border-right: 10rem solid transparent;
   border-bottom: 10rem solid #FCFF4B;
   top: 44%;
@@ -142,7 +142,7 @@ body .bottom-right-triangle {
   width: 0;
   height: 0;
   position: absolute;
-  opacity: .7;
+  opacity: .3;
   border-bottom: 10rem solid #80DB48;
   border-left: 10rem solid transparent;
   left: 49.5%;

@@ -1,4 +1,5 @@
 /*** Created by ya boi*/
+
 var $topLeft = $('#triangle-top-left');
 var $topRight = $('#triangle-top-right');
 var $bottomLeft = $('#triangle-bottom-left');
@@ -94,14 +95,11 @@ function lightUpButtonOnKeypress() {
 
 function clearSequences() {
     gameSequence = [];
-    playerSequence = [];
-    positionToCheck = 0;
-    round = 0;
+    round = 1;
 }
 
 function playAgain() {
     $('#start').show().text('You Lose.' + 'Play again?');
-    clearSequences()
 
 }
 
@@ -113,8 +111,9 @@ function compareSequences() {
         positionToCheck++;
     } else {
         //incorrect press
-        playAgain();
         startOnOff = false;
+        clickStart();
+        playAgain();
         console.log("incorrect");
     }
     if (positionToCheck == gameSequence.length) {
@@ -123,7 +122,6 @@ function compareSequences() {
         window.setTimeout(nextLevel, 900);
     }
 }
-
 
 function nextLevel() {
 
@@ -136,12 +134,17 @@ function nextLevel() {
 }
 
 function startGame() {
+    clearSequences();
     nextLevel();
 }
 
-$start.click(function (){
-    if (startOnOff == false)
-    startGame();
-    $('#start').hide();
-    startOnOff = true;
-});
+function clickStart() {
+    $start.click(function () {
+        if (startOnOff == false)
+            startGame();
+        $('#start').hide();
+        startOnOff = true;
+    })
+}
+
+clickStart();

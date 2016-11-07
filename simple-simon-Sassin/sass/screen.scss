@@ -32,6 +32,12 @@ $grey: #474645;
   }
 }
 
+.pMargin {
+  margin: 1em;
+  position: relative;
+  top: 50%;
+}
+
 body {
   background: $grey;
 

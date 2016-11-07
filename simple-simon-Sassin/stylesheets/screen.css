@@ -68,15 +68,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 35, ../sass/screen.scss */
+.pMargin {
+    margin: 1em;
+    position: relative;
+    top: 50%;
+}
+
+/* line 41, ../sass/screen.scss */
 body {
   background: #474645;
 }
-/* line 38, ../sass/screen.scss */
+
+/* line 44, ../sass/screen.scss */
 body h1 {
   font-size: 9rem;
   color: whitesmoke;
 }
-/* line 43, ../sass/screen.scss */
+
+/* line 49, ../sass/screen.scss */
 body #center-square {
   width: 14.14rem;
   height: 14.14rem;
@@ -88,7 +97,8 @@ body #center-square {
   left: 40.7%;
   cursor: pointer;
 }
-/* line 54, ../sass/screen.scss */
+
+/* line 60, ../sass/screen.scss */
 body #center-square #start {
   font-size: 2rem;
   -webkit-transform: rotate(45deg);
@@ -97,7 +107,8 @@ body #center-square #start {
   top: 40%;
   color: whitesmoke;
 }
-/* line 62, ../sass/screen.scss */
+
+/* line 68, ../sass/screen.scss */
 body #center-square #round {
   font-size: 1.4rem;
   -webkit-transform: rotate(45deg);
@@ -106,7 +117,8 @@ body #center-square #round {
   top: 64%;
   color: whitesmoke;
 }
-/* line 73, ../sass/screen.scss */
+
+/* line 79, ../sass/screen.scss */
 body .top-left-triangle {
   width: 0;
   height: 0;
@@ -116,7 +128,8 @@ body .top-left-triangle {
   border-right: 10rem solid transparent;
   left: 37%;
 }
-/* line 78, ../sass/screen.scss */
+
+/* line 84, ../sass/screen.scss */
 body .top-right-triangle {
   width: 0;
   height: 0;
@@ -126,7 +139,8 @@ body .top-right-triangle {
   border-left: 10rem solid transparent;
   left: 49.5%;
 }
-/* line 83, ../sass/screen.scss */
+
+/* line 89, ../sass/screen.scss */
 body .bottom-left-triangle {
   width: 0;
   height: 0;
@@ -137,7 +151,8 @@ body .bottom-left-triangle {
   top: 44%;
   left: 37%;
 }
-/* line 89, ../sass/screen.scss */
+
+/* line 95, ../sass/screen.scss */
 body .bottom-right-triangle {
   width: 0;
   height: 0;
